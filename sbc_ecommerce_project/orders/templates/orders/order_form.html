@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% if order.id %}Edit Order{% else %}Create Order{% endif %}</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>{% if order.id %}Edit Order{% else %}Create Order{% endif %}</h1>
+
+      {% if order.id %}
+      <p><strong>Order Date:</strong> {{ order.order_date }}</p>
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'order_list' %}" class="btn btn-secondary">Cancel</a>
+      </form>
+      <br />
+      <a href="{% url 'order_list' %}">Back to Orders</a>
+    </div>
+  </body>
+</html>
